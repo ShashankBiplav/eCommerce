@@ -19,6 +19,11 @@ const app = express();
 import {corsError} from "./middleware/error-handlers/cors-error.js";
 import {centralError} from "./middleware/error-handlers/central-error.js";
 
+//all models imported here
+import Administrator from "./models/administrator.js";
+import Buyer from "./models/buyer.js";
+import Seller from "./models/seller.js";
+
 //all routes imported here
 
 
@@ -75,4 +80,12 @@ app.use(compression());
 app.use(centralError);
 
 //sync with database
-app.listen(port);
+// sync with database
+sequelize
+  .sync()
+  .then(() => {
+    app.listen(port);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
