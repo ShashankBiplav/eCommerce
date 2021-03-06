@@ -68,7 +68,11 @@ app.use(corsError);
 //all routes entrypoint here
 
 
+app.use(helmet());
+app.use(compression());
+
 //central error handler here
 app.use(centralError);
 
+//sync with database
 app.listen(port);
