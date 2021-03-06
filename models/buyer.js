@@ -2,7 +2,7 @@ import Sequelize from "sequelize";
 
 import sequelize from "../utilities/database.js";
 
-const Administrator = sequelize.define("administrator", {
+const Buyer = sequelize.define("buyer", {
   id:{
     type: Sequelize.INTEGER,
     autoIncrement: true,
@@ -28,7 +28,15 @@ const Administrator = sequelize.define("administrator", {
   otp: {
     type: Sequelize.INTEGER,
     allowNull: false,
-  }
+  },
+  isVerified: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+  },
+  isAuthorized: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+  },
 });
 
-export default Administrator;
+export default Buyer;
