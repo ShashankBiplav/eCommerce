@@ -5,7 +5,9 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "start-dev": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -25,8 +27,17 @@
   },
   "homepage": "https://github.com/ShashankBiplav/eCommerce#readme",
   "dependencies": {
+    "compression": "^1.7.4",
     "express": "^4.17.1",
+    "express-validator": "^6.10.0",
     "helmet": "^4.4.1",
-    "multer": "^1.4.2"
+    "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.2",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.5.0"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.7"
   }
 }
