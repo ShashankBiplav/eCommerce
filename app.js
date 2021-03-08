@@ -28,6 +28,7 @@ import UserDetail from "./models/user-detail.js";
 import AdminProduct from "./models/admin-product.js";
 
 //all routes imported here
+import authenticationRoutes from "./routes/authentication-routes.js";
 
 
 //multer file storage
@@ -79,6 +80,7 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use(corsError);
 
 //all routes entrypoint here
+app.use('/auth',authenticationRoutes);
 
 
 app.use(helmet());

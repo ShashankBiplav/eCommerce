@@ -17,13 +17,14 @@ export const adminSignupPhone = async (req, res, next) => {
       const isUnique = await isPhoneUnique(Administrator, phone);
       if (!isUnique) {
         await Administrator.update({otp}, {
-          where: {phone}
+          where: {phone,name}
         });
         res.status(201).json({
           msg: `Admin already exists. OTP sent to ${phone}`,
         });
       } else {
         await Administrator.create({
+          name,
           phone,
           otp
         });
