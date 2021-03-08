@@ -27,7 +27,11 @@ const Administrator = sequelize.define("administrator", {
   },
   otp: {
     type: Sequelize.INTEGER,
-    allowNull: false,
+    allowNull: true,
+  },
+  refreshToken: {
+    type: Sequelize.STRING,
+    allowNull: true
   }
 });
 

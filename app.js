@@ -1,4 +1,5 @@
 import path from "path";
+import fs from "fs";
 
 import express from "express";
 import multer from "multer";
@@ -21,8 +22,7 @@ import {centralError} from "./middleware/error-handlers/central-error.js";
 
 //all models imported here
 import Administrator from "./models/administrator.js";
-import Buyer from "./models/buyer.js";
-import Seller from "./models/seller.js";
+import User from "./models/user.js";
 
 //all routes imported here
 
@@ -30,10 +30,15 @@ import Seller from "./models/seller.js";
 //multer file storage
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'images');
+    let dir = "./images";
+    //this will create the folder if not exists
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir);
+    }
+    cb(null, dir);
   },
   filename: (req, file, cb) => {
-    cb(null, new Date().toISOString().replace(/:/g, '-') + '-' + file.originalname);
+    cb(null, new Date().toISOString().replace(/:/g, '-') + '-' + file.originalname.toString().replace(/\s/g, '-'));
   },
 });
 

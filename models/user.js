@@ -2,8 +2,8 @@ import Sequelize from "sequelize";
 
 import sequelize from "../utilities/database.js";
 
-const Seller = sequelize.define("seller", {
-  id:{
+const User = sequelize.define("user", {
+  id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
     allowNull: false,
@@ -17,7 +17,7 @@ const Seller = sequelize.define("seller", {
     type: Sequelize.STRING,
     allowNull: true,
   },
-  password:{
+  password: {
     type: Sequelize.STRING,
     allowNull: true,
   },
@@ -29,6 +29,18 @@ const Seller = sequelize.define("seller", {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
+  profileImageUrl:{
+    type: Sequelize.STRING,
+    allowNull: true,
+  },
+  isBuyer: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+  },
+  isSeller: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+  },
   isVerified: {
     type: Sequelize.BOOLEAN,
     defaultValue: false,
@@ -37,6 +49,10 @@ const Seller = sequelize.define("seller", {
     type: Sequelize.BOOLEAN,
     defaultValue: false,
   },
+  refreshToken: {
+    type: Sequelize.STRING,
+    allowNull: true
+  },
 });
 
-export default Seller;
+export default User;
