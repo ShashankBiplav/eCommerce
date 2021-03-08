@@ -12,6 +12,7 @@ const UserDetail = sequelize.define("user_detail", {
   },
   userId: {
     type: Sequelize.INTEGER,
+    allowNull: false,
     references:{
       model: User,
       key: 'id'
@@ -19,11 +20,11 @@ const UserDetail = sequelize.define("user_detail", {
   },
   businessName: {
     type: Sequelize.STRING,
-    allowNull: true,
+    allowNull: false,
   },
   gstFile: {
     type: Sequelize.STRING,
-    allowNull: true,
+    allowNull: false,
   },
   businessType: {
     type: Sequelize.STRING,

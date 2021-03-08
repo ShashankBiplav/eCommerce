@@ -23,6 +23,9 @@ import {centralError} from "./middleware/error-handlers/central-error.js";
 //all models imported here
 import Administrator from "./models/administrator.js";
 import User from "./models/user.js";
+import Product from "./models/product.js";
+import UserDetail from "./models/user-detail.js";
+import AdminProduct from "./models/admin-product.js";
 
 //all routes imported here
 
