@@ -3,9 +3,9 @@ import Sequelize from "sequelize";
 import sequelize from "../utilities/database.js";
 
 //reference models
-import User from "./user.js";
+import Administrator from "./administrator.js";
 
-const Product = sequelize.define("product", {
+const AdminProduct = sequelize.define("admin_product", {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
@@ -16,7 +16,7 @@ const Product = sequelize.define("product", {
     type: Sequelize.INTEGER,
     allowNull: false,
     references: {
-      model: User,
+      model: Administrator,
       key: 'id'
     }
   },
@@ -66,4 +66,4 @@ const Product = sequelize.define("product", {
   }
 });
 
-export default Product;
+export default AdminProduct;
