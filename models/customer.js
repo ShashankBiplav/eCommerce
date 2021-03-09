@@ -2,7 +2,7 @@ import Sequelize from "sequelize";
 
 import sequelize from "../utilities/database.js";
 
-const User = sequelize.define("user", {
+const Customer = sequelize.define("customer", {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
@@ -39,7 +39,7 @@ const User = sequelize.define("user", {
   },
   isAuthorized: {
     type: Sequelize.BOOLEAN,
-    defaultValue: true,
+    defaultValue: false,
   },
   refreshToken: {
     type: Sequelize.STRING,
@@ -47,4 +47,4 @@ const User = sequelize.define("user", {
   },
 });
 
-export default User;
+export default Customer;
