@@ -17,7 +17,6 @@ export const adminLoginPhone = async (req, res, next) => {
       error.statusCode = 404;
       return next(error);
     }
-    console.log(admin);
     const id = admin["dataValues"]["id"];
     const name = admin["dataValues"]["name"];
     const token = jwt.sign({id, phone}, 'your_secret_key', {expiresIn: '1 day'});

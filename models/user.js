@@ -27,7 +27,7 @@ const User = sequelize.define("user", {
   },
   otp: {
     type: Sequelize.INTEGER,
-    allowNull: false,
+    allowNull: true,
   },
   profileImageUrl:{
     type: Sequelize.STRING,
