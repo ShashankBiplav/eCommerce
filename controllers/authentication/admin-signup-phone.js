@@ -17,7 +17,7 @@ export const adminSignupPhone = async (req, res, next) => {
       const isUnique = await isPhoneUnique(Administrator, phone);
       if (!isUnique) {
         await Administrator.update({otp}, {
-          where: {phone,name}
+          where: {phone}
         });
         res.status(201).json({
           msg: `Admin already exists. OTP sent to ${phone}`,
@@ -29,8 +29,7 @@ export const adminSignupPhone = async (req, res, next) => {
           otp
         });
         res.status(201).json({
-          msg: `Admin registered! OTP sent to ${phone}`,
-          code: 0,
+          msg: `Admin registered! OTP sent to ${phone}`
         });
       }
     }

@@ -32,6 +32,10 @@ const Administrator = sequelize.define("administrator", {
   refreshToken: {
     type: Sequelize.STRING,
     allowNull: true
+  },
+  isVerified:{
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 });
 
