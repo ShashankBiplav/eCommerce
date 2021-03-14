@@ -13,7 +13,7 @@ export const isAdministrator= async (req, res, next) => {
     }
     const token = authHeader.split(' ')[1]; //Authorization header looks like {Authorization: 'Bearer ' + this.props.token}
     let decodedToken;
-    decodedToken = jwt.verify(token, 'your_secret_key');
+    decodedToken = jwt.verify(token, process.env.TOKEN_SIGNING_KEY);
     if (!decodedToken) {
       const error = new Error('Not Authorized');
       error.statusCode = 401;

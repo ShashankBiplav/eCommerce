@@ -28,9 +28,9 @@ export const adminLoginEmail = async (req, res, next) => {
     const id = admin["dataValues"]["id"];
     const name = admin["dataValues"]["name"];
     const phone = admin["dataValues"]["phone"];
-    const token = jwt.sign({id, phone}, 'your_secret_key', {expiresIn: '1 day'});
-    const refreshToken = jwt.sign({id, phone, name}, 'refresh_token_key', {expiresIn: '2 days'});
-    await Administrator.update({isVerified: true, refreshToken: refreshToken, otp: null}, {where: {phone}});
+    const token = jwt.sign({id, phone}, process.env.TOKEN_SIGNING_KEY, {expiresIn: '1 day'});
+    const refreshToken = jwt.sign({id, phone, name}, process.env.REFRESH_TOKEN_SIGNING_KEY, {expiresIn: '2 days'});
+    await Administrator.update({refreshToken: refreshToken}, {where: {email, phone}});
     res.status(201).json({
       msg: `Login with email Successful`,
       token: token,
