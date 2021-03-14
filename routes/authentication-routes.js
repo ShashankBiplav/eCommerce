@@ -6,8 +6,6 @@ import {adminSignupPhone} from '../controllers/authentication/admin-signup-phone
 import {adminLoginPhone} from "../controllers/authentication/admin-login-phone.js";
 import {userSignupPhone} from "../controllers/authentication/user-signup-phone.js";
 import {userLoginPhone} from "../controllers/authentication/user-login-phone.js";
-import {customerSignupPhone} from "../controllers/authentication/customer-signup-phone.js";
-import {customerLoginPhone} from "../controllers/authentication/customer-login-phone.js";
 
 
 const router = express.Router();
@@ -23,11 +21,5 @@ router.post('/user/signup/phone', userSignupPhone);
 
 //USER LOGIN USING PHONE + OTP
 router.post('/user/login/phone', userLoginPhone);
-
-//CUSTOMER SIGNUP USING PHONE
-router.post('/customer/signup/phone', customerSignupPhone);
-
-//Customer LOGIN USING PHONE + OTP
-router.post('/customer/login/phone', customerLoginPhone);
 
 export default router;

@@ -7,8 +7,9 @@ import Administrator from "../../models/administrator.js";
 //helpers
 import {validationErrorHandler} from "../../helpers/validation-error-handler.js";
 
+
 export const adminLoginPhone = async (req, res, next) => {
-  validationErrorHandler(req, next);
+  validationErrorHandler()
   const {phone, otp} = req.body;
   try {
     const admin = await Administrator.findOne({where: {phone, otp}});

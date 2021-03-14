@@ -63,6 +63,10 @@ const Product = sequelize.define("product", {
   isDealOfTheDay: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
+  },
+  isAdminProduct:{
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 });
 

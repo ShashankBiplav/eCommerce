@@ -23,7 +23,6 @@ import {centralError} from "./middleware/error-handlers/central-error.js";
 //all models imported here
 import Administrator from "./models/administrator.js";
 import User from "./models/user.js";
-import Customer from "./models/customer.js";
 import Product from "./models/product.js";
 import UserDetail from "./models/user-detail.js";
 import AdminProduct from "./models/admin-product.js";
@@ -90,7 +89,6 @@ app.use(compression());
 //central error handler here
 app.use(centralError);
 
-//sync with database
 // sync with database
 sequelize
   .sync()
