@@ -45,4 +45,5 @@ export const createNewAdminProduct = async (req, res, next) => {
 //edit an existing admin product
 export const editAdminProduct = async (req, res, next) => {};
 
-//
+//toggle authorization, buyer and seller status of user
+export const toggleUserStatus = async (req, res, next) => {};
