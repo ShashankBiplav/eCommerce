@@ -26,7 +26,7 @@ export const changeAdministratorDetails = async (req, res, next) => {
       password: hashedPassword
     }, {where: {id: req.userId}});
     res.status(201).json({
-      msg: `Administrator profile details updated!`
+      msg: "Administrator profile details updated!"
     });
   } catch (err) {
     if (!err.statusCode) {
@@ -35,5 +35,14 @@ export const changeAdministratorDetails = async (req, res, next) => {
     next(err);
   }
 };
+
+//create new product
+export const createNewAdminProduct = async (req, res, next) => {
+  validationErrorHandler(req, next);
+  const {title, price, costPrice, discount, description, stock} =req.body;
+};
+
+//edit an existing admin product
+export const editAdminProduct = async (req, res, next) => {};
 
 //

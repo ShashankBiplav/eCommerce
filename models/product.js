@@ -4,6 +4,7 @@ import sequelize from "../utilities/database.js";
 
 //reference models
 import User from "./user.js";
+import Administrator from "./administrator.js";
 
 const Product = sequelize.define("product", {
   id: {
@@ -14,9 +15,17 @@ const Product = sequelize.define("product", {
   },
   userId: {
     type: Sequelize.INTEGER,
-    allowNull: false,
+    allowNull: true,
     references: {
       model: User,
+      key: 'id'
+    }
+  },
+  adminId: {
+    type: Sequelize.INTEGER,
+    allowNull: true,
+    references: {
+      model: Administrator,
       key: 'id'
     }
   },
@@ -46,7 +55,7 @@ const Product = sequelize.define("product", {
   },
   rating: {
     type: Sequelize.DOUBLE,
-    defaultValue: 5.0
+    defaultValue: 0.0
   },
   stock: {
     type: Sequelize.INTEGER,
