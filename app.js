@@ -29,7 +29,7 @@ import AdminProduct from "./models/admin-product.js";
 
 //all routes imported here
 import authenticationRoutes from "./routes/authentication-routes.js";
-
+import administratorRoutes from "./routes/administrator-routes.js"
 
 //multer file storage
 const fileStorage = multer.diskStorage({
@@ -82,6 +82,7 @@ app.use(corsError);
 //all routes entrypoint here
 app.use('/auth',authenticationRoutes);
 
+app.use('/administrator',administratorRoutes);
 
 app.use(helmet());
 app.use(compression());
