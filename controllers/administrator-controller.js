@@ -1,6 +1,4 @@
 //packages
-import jwt from 'jsonwebtoken';
-
 import bcrypt from 'bcryptjs';
 
 //models

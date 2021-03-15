@@ -14,12 +14,13 @@ const router = express.Router();
 
 //ADMIN SIGNUP USING PHONE
 router.post('/administrator/signup/phone', [
-  body('phone').trim().isInt().isLength({min: 10}).withMessage("Phone must be an integer")
+  body('name').trim().not().isEmpty().withMessage("Name is required"),
+  body('phone').trim().isInt().isLength({min: 10, max: 10}).withMessage("Phone must be an integer"),
 ], adminSignupPhone);
 
 //ADMIN LOGIN USING PHONE + OTP
 router.post('/administrator/login/phone', [
-  body('phone').trim().isInt().isLength({min: 10}).withMessage("Phone must be an integer"),
+  body('phone').trim().isInt().isLength({min: 10, max:10}).withMessage("Phone must be an integer"),
   body('otp').trim().isInt().isLength({min: 6}).withMessage("OTP must be an integer and of 6 digits")
 ], adminLoginPhone);
 
@@ -37,7 +38,8 @@ router.post('/user/login/email', [
 
 //USER SIGNUP USING PHONE
 router.post('/user/signup/phone', [
-  body('phone').trim().isInt().isLength({min: 10}).withMessage("Phone must be an integer")
+  body('name').trim().not().isEmpty().withMessage("Name is required"),
+  body('phone').trim().isInt().isLength({min: 10, max:10}).withMessage("Phone must be an integer"),
 ], userSignupPhone);
 
 //USER LOGIN USING PHONE + OTP
