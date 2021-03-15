@@ -8,9 +8,13 @@ import Administrator from "../models/administrator.js";
 
 import User from "../models/user.js";
 
+import Product from "../models/product.js";
+
 //helpers
 import {validationErrorHandler} from "../helpers/validation-error-handler.js";
 
+//DB relations
+Administrator.hasMany(Product);
 
 //CONTROLLERS
 
@@ -40,6 +44,24 @@ export const changeAdministratorDetails = async (req, res, next) => {
 export const createNewAdminProduct = async (req, res, next) => {
   validationErrorHandler(req, next);
   const {title, price, costPrice, discount, description, stock} =req.body;
+  try{
+    const response = await Product.create({
+      adminId: req.userId,
+      title,
+      price,
+      costPrice,
+      discount,
+      description,
+      stock,
+      isAdminProduct: true
+    });
+    console.log(response);
+  }catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
 };
 
 //edit an existing admin product

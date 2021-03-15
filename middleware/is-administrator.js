@@ -25,6 +25,11 @@ export const isAdministrator= async (req, res, next) => {
       error.statusCode = 404;
       next(error);
     }
+    if(!administrator["dataValues"]["isVerified"]){
+      const error = new Error('Not Verified Administrator');
+      error.statusCode = 403;
+      return next(error);
+    }
     req.userId = decodedToken.id;
     req.phone = decodedToken.phone;
     next();
