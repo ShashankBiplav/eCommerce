@@ -38,4 +38,11 @@ router.put('/edit-product/:productId',isAdministrator,[
 //EDIT FEATURED IMAGE OF AN EXISTING PRODUCT
 router.put('/edit-image/:productId', isAdministrator, administratorController.updateFeaturedImageOfProduct);
 
+//EDIT BUYER, SELLER, AUTHORIZATION STATUS OF A USER
+router.patch('/edit-user/:userId', isAdministrator,[
+  body('isBuyer').not().isEmpty().isBoolean().withMessage('This is a required boolean'),
+  body('isSeller').not().isEmpty().isBoolean().withMessage('This is a required boolean'),
+  body('isAuthorized').not().isEmpty().isBoolean().withMessage('This is a required boolean'),
+], administratorController.toggleUserStatus);
+
 export default router;

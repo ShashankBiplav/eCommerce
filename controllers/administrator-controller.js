@@ -148,4 +148,31 @@ export const updateFeaturedImageOfProduct = async (req, res, next) => {
 
 //toggle authorization, buyer and seller status of user
 export const toggleUserStatus = async (req, res, next) => {
+  validationErrorHandler(req, next);
+  const {isBuyer, isSeller, isAuthorized} = req.body;
+  try {
+    const result = await User.update({
+      isBuyer,
+      isSeller,
+      isAuthorized
+    },{
+      where: {
+        id: req.params.userId
+      }
+    });
+    console.log(result);
+    if (result[0] === 0) {
+      const error = new Error('User not found');
+      error.statusCode = 404;
+      return next(error);
+    }
+    res.status(201).json({
+      message: 'User updated successfully'
+    });
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
 };
