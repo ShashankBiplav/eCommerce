@@ -15,4 +15,14 @@ router.post('/update-profile', isAdministrator,[
   body('password').trim().isLength({min:6}).withMessage("Password must be 6 characters long")
 ], administratorController.changeAdministratorDetails);
 
+//CREATE NEW PRODUCT
+router.post('/add-product', isAdministrator,[
+  body('title').not().isEmpty().trim().escape().withMessage("Title is required"),
+  body('price').isNumeric().not().isEmpty().withMessage("Should be in a Decimal format"),
+  body('costPrice').isNumeric().not().isEmpty().withMessage("Should be in a Decimal format"),
+  body('discount').isNumeric().not().isEmpty().withMessage("Should be in a Decimal format"),
+  body('description').not().isEmpty().trim().isLength({min:20}).escape().withMessage("Description is required"),
+  body('stock').trim().isInt().withMessage("Phone must be an integer"),
+], administratorController.createNewAdminProduct);
+
 export default router;

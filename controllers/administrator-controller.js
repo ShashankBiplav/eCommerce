@@ -43,17 +43,27 @@ export const createNewAdminProduct = async (req, res, next) => {
   validationErrorHandler(req, next);
   const {title, price, costPrice, discount, description, stock} =req.body;
   try{
+  if (!req.file) {
+    const error = new Error('No image provided');
+    error.statusCode = 422;
+    return next(error);
+  }
+  const imageUrl = req.file.path;
     const response = await Product.create({
       adminId: req.userId,
       title,
       price,
+      imageUrl,
       costPrice,
       discount,
       description,
       stock,
       isAdminProduct: true
     });
-    console.log(response);
+    res.status(201).json({
+      message: "Product created successfully",
+      response
+    });
   }catch (err) {
     if (!err.statusCode) {
       err.statusCode = 500;
