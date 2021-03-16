@@ -22,17 +22,20 @@ router.post('/add-product', isAdministrator,[
   body('costPrice').isNumeric().not().isEmpty().withMessage("Should be in a Decimal format"),
   body('discount').isNumeric().not().isEmpty().withMessage("Should be in a Decimal format"),
   body('description').not().isEmpty().trim().isLength({min:20}).escape().withMessage("Description is required"),
-  body('stock').trim().isInt().withMessage("Phone must be an integer"),
+  body('stock').trim().isInt().withMessage("Stock must be an integer"),
 ], administratorController.createNewAdminProduct);
 
 //EDIT AN EXISTING PRODUCT
-router.put('/edit-product/:productId',[
+router.put('/edit-product/:productId',isAdministrator,[
   body('title').not().isEmpty().trim().escape().withMessage("Title is required"),
   body('price').isNumeric().not().isEmpty().withMessage("Should be in a Decimal format"),
   body('costPrice').isNumeric().not().isEmpty().withMessage("Should be in a Decimal format"),
   body('discount').isNumeric().not().isEmpty().withMessage("Should be in a Decimal format"),
   body('description').not().isEmpty().trim().isLength({min:20}).escape().withMessage("Description is required"),
-  body('stock').trim().isInt().withMessage("Phone must be an integer"),
-]);
+  body('stock').trim().isInt().withMessage("Stock must be an integer"),
+], administratorController.editAdminProduct);
+
+//EDIT FEATURED IMAGE OF AN EXISTING PRODUCT
+router.put('/edit-image/:productId', isAdministrator, administratorController.updateFeaturedImageOfProduct);
 
 export default router;
