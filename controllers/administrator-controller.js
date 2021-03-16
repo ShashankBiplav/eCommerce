@@ -155,12 +155,11 @@ export const toggleUserStatus = async (req, res, next) => {
       isBuyer,
       isSeller,
       isAuthorized
-    },{
+    }, {
       where: {
         id: req.params.userId
       }
     });
-    console.log(result);
     if (result[0] === 0) {
       const error = new Error('User not found');
       error.statusCode = 404;
@@ -168,6 +167,36 @@ export const toggleUserStatus = async (req, res, next) => {
     }
     res.status(201).json({
       message: 'User updated successfully'
+    });
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};
+
+//toggle product parameters
+export const editProductParameters = async (req, res, next) => {
+  validationErrorHandler(req, next);
+  const {isActive, isTrending, isDealOfTheDay} = req.body;
+  try {
+    const result = await Product.update({
+      isActive,
+      isTrending,
+      isDealOfTheDay
+    }, {
+      where: {
+        id: req.params.productId
+      }
+    });
+    if (result[0] === 0) {
+      const error = new Error('Product not found');
+      error.statusCode = 404;
+      return next(error);
+    }
+    res.status(201).json({
+      message: 'Product updated successfully'
     });
   } catch (err) {
     if (!err.statusCode) {

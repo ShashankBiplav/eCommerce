@@ -45,4 +45,11 @@ router.patch('/edit-user/:userId', isAdministrator,[
   body('isAuthorized').not().isEmpty().isBoolean().withMessage('This is a required boolean'),
 ], administratorController.toggleUserStatus);
 
+//EDIT PRODUCT PARAMETERS
+router.patch('/edit-product/:productId', isAdministrator,[
+  body('isActive').not().isEmpty().isBoolean().withMessage('This is a required boolean'),
+  body('isTrending').not().isEmpty().isBoolean().withMessage('This is a required boolean'),
+  body('isDealOfTheDay').not().isEmpty().isBoolean().withMessage('This is a required boolean'),
+], administratorController.editProductParameters);
+
 export default router;
