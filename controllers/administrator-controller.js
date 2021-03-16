@@ -151,6 +151,14 @@ export const toggleUserStatus = async (req, res, next) => {
   validationErrorHandler(req, next);
   const {isBuyer, isSeller, isAuthorized} = req.body;
   try {
+    await Product.update({
+        isActive: isAuthorized
+      },
+      {
+        where: {
+          userId: req.params.userId
+        }
+      });
     const result = await User.update({
       isBuyer,
       isSeller,
