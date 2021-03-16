@@ -29,7 +29,7 @@ export const userLoginEmail = async (req, res, next) => {
     const name = user["dataValues"]["name"];
     const phone = user["dataValues"]["phone"];
     const token = jwt.sign({id, phone}, process.env.TOKEN_SIGNING_KEY, {expiresIn: '1 day'});
-    const refreshToken = jwt.sign({id, phone, name}, process.env.REFRESH_TOKEN_SIGNING_KEY, {expiresIn: '2 days'});
+    const refreshToken = jwt.sign({id, phone, name}, process.env.REFRESH_TOKEN_SIGNING_KEY);
     await User.update({refreshToken: refreshToken}, {where: {email, phone}});
     res.status(201).json({
       msg: `Login with email Successful`,

@@ -59,8 +59,7 @@ export const createNewAdminProduct = async (req, res, next) => {
       costPrice,
       discount,
       description,
-      stock,
-      isAdminProduct: true
+      stock
     });
     res.status(201).json({
       message: "Product created successfully",
