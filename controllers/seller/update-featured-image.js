@@ -18,7 +18,6 @@ export const updateFeaturedSellerProductImage = async (req, res, next) => {
         userId: req.userId
       }
     });
-    console.log(product)
     if (!product) {
       clearImage(imageUrl);
       const error = new Error('No such product found');

@@ -5,6 +5,7 @@ import {body} from 'express-validator';
 //controllers
 import {createNewSellerProduct} from "../controllers/seller/create-product.js";
 import {updateFeaturedSellerProductImage} from "../controllers/seller/update-featured-image.js";
+import {toggleSellerProductStatus} from "../controllers/seller/toggle-product-status.js";
 
 //middleware
 import {isSeller} from "../middleware/is-seller.js";
@@ -21,6 +22,10 @@ router.post('/create-product', isSeller, [
   body('stock').trim().isInt().withMessage("Stock must be an integer")
 ], createNewSellerProduct);
 
-router.post('/update-image/:productId',isSeller, updateFeaturedSellerProductImage);
+router.put('/update-image/:productId',isSeller, updateFeaturedSellerProductImage);
+
+router.put('/toggle-product/:productId', isSeller,[
+  body('isActive').not().isEmpty().isBoolean().withMessage('This is a required boolean')
+],toggleSellerProductStatus);
 
 export default router;
