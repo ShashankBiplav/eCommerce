@@ -6,6 +6,7 @@ import {body} from 'express-validator';
 import {changeAdministratorDetails} from "../controllers/admin/change-admin-details.js";
 import {createNewAdminProduct} from "../controllers/admin/create-product.js";
 import {editAdminProduct} from "../controllers/admin/edit-product.js";
+import {updateFeaturedImageOfProduct} from "../controllers/admin/update-featured-image.js";
 import * as administratorController from "../controllers/administrator-controller.js";
 
 //middlewares
@@ -41,7 +42,7 @@ router.put('/edit-product/:productId',isAdministrator,[
 ], editAdminProduct);
 
 //EDIT FEATURED IMAGE OF AN EXISTING PRODUCT
-router.put('/edit-image/:productId', isAdministrator, administratorController.updateFeaturedImageOfProduct);
+router.put('/edit-image/:productId', isAdministrator, updateFeaturedImageOfProduct);
 
 //EDIT BUYER, SELLER, AUTHORIZATION STATUS OF A USER
 router.patch('/edit-user/:userId', isAdministrator,[
