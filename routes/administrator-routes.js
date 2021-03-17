@@ -9,11 +9,18 @@ import {editAdminProduct} from "../controllers/admin/edit-product.js";
 import {updateFeaturedImageOfProduct} from "../controllers/admin/update-featured-image.js";
 import {toggleUserStatus} from "../controllers/admin/toggle-user-status.js";
 import {toggleProductParameters} from "../controllers/admin/toggle-product-parameters.js";
+import {getAllUsers} from "../controllers/admin/get-all-users.js";
 
 //middlewares
 import {isAdministrator} from "../middleware/is-administrator.js";
 
 const router = express.Router();
+
+//GET ALL USERS
+router.post('/users', isAdministrator,[
+  body('offset').trim().isInt().withMessage("Stock must be an integer"),
+  body('limit').trim().isInt().withMessage("Stock must be an integer"),
+], getAllUsers);
 
 //UPDATE ADMIN PROFILE
 router.post('/update-profile', isAdministrator,[
