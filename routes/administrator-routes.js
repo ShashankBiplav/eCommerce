@@ -7,6 +7,7 @@ import {changeAdministratorDetails} from "../controllers/admin/change-admin-deta
 import {createNewAdminProduct} from "../controllers/admin/create-product.js";
 import {editAdminProduct} from "../controllers/admin/edit-product.js";
 import {updateFeaturedImageOfProduct} from "../controllers/admin/update-featured-image.js";
+import {toggleUserStatus} from "../controllers/admin/toggle-user-status.js";
 import * as administratorController from "../controllers/administrator-controller.js";
 
 //middlewares
@@ -49,7 +50,7 @@ router.patch('/edit-user/:userId', isAdministrator,[
   body('isBuyer').not().isEmpty().isBoolean().withMessage('This is a required boolean'),
   body('isSeller').not().isEmpty().isBoolean().withMessage('This is a required boolean'),
   body('isAuthorized').not().isEmpty().isBoolean().withMessage('This is a required boolean'),
-], administratorController.toggleUserStatus);
+], toggleUserStatus);
 
 //EDIT PRODUCT PARAMETERS
 router.patch('/edit-product/:productId', isAdministrator,[
