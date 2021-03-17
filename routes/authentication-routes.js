@@ -8,6 +8,11 @@ import {userSignupPhone} from "../controllers/authentication/user-signup-phone.j
 import {userLoginPhone} from "../controllers/authentication/user-login-phone.js";
 import {adminLoginEmail} from "../controllers/authentication/admin-login-email.js";
 import {userLoginEmail} from "../controllers/authentication/user-login-email.js";
+import {adminLogout} from "../controllers/authentication/admin-logout.js";
+import {userLogout} from "../controllers/authentication/user-logout.js";
+
+//middleware
+import {isAdministrator} from "../middleware/is-administrator.js";
 
 
 const router = express.Router();
@@ -20,7 +25,7 @@ router.post('/administrator/signup/phone', [
 
 //ADMIN LOGIN USING PHONE + OTP
 router.post('/administrator/login/phone', [
-  body('phone').trim().isInt().isLength({min: 10, max:10}).withMessage("Phone must be an integer"),
+  body('phone').trim().isInt().isLength({min: 10, max: 10}).withMessage("Phone must be an integer"),
   body('otp').trim().isInt().isLength({min: 6}).withMessage("OTP must be an integer and of 6 digits")
 ], adminLoginPhone);
 
@@ -39,7 +44,7 @@ router.post('/user/login/email', [
 //USER SIGNUP USING PHONE
 router.post('/user/signup/phone', [
   body('name').trim().not().isEmpty().withMessage("Name is required"),
-  body('phone').trim().isInt().isLength({min: 10, max:10}).withMessage("Phone must be an integer"),
+  body('phone').trim().isInt().isLength({min: 10, max: 10}).withMessage("Phone must be an integer"),
 ], userSignupPhone);
 
 //USER LOGIN USING PHONE + OTP
@@ -47,5 +52,11 @@ router.post('/user/login/phone', [
   body('phone').trim().isInt().isLength({min: 10}).withMessage("Phone must be an integer"),
   body('otp').trim().isInt().isLength({min: 6}).withMessage("OTP must be an integer and of 6 digits")
 ], userLoginPhone);
+
+// ADMIN LOGOUT
+router.put('/administrator/logout', isAdministrator, adminLogout);
+
+// ADMIN LOGOUT
+router.put('/user/logout', isAdministrator, userLogout);
 
 export default router;
