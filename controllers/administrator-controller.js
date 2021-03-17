@@ -18,40 +18,6 @@ Administrator.hasMany(Product);
 
 //CONTROLLERS
 
-//edit an existing admin product
-export const editAdminProduct = async (req, res, next) => {
-  validationErrorHandler(req, next);
-  const {title, price, costPrice, discount, description, stock} = req.body;
-  try {
-    const result = await Product.update({
-      title,
-      price,
-      costPrice,
-      discount,
-      description,
-      stock,
-    }, {
-      where: {
-        id: req.params.productId,
-        adminId: req.userId,
-      }
-    });
-    if (result[0] === 0) {
-      const error = new Error('Product not found');
-      error.statusCode = 404;
-      return next(error);
-    }
-    res.status(201).json({
-      message: 'Product updated successfully'
-    });
-  } catch (err) {
-    if (!err.statusCode) {
-      err.statusCode = 500;
-    }
-    next(err);
-  }
-};
-
 //update featured image of an existing admin product
 export const updateFeaturedImageOfProduct = async (req, res, next) => {
   try {

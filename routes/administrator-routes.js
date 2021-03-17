@@ -5,6 +5,7 @@ import {body} from 'express-validator';
 //controllers
 import {changeAdministratorDetails} from "../controllers/admin/change-admin-details.js";
 import {createNewAdminProduct} from "../controllers/admin/create-product.js";
+import {editAdminProduct} from "../controllers/admin/edit-product.js";
 import * as administratorController from "../controllers/administrator-controller.js";
 
 //middlewares
@@ -37,7 +38,7 @@ router.put('/edit-product/:productId',isAdministrator,[
   body('discount').isNumeric().not().isEmpty().withMessage("Should be in a Decimal format"),
   body('description').not().isEmpty().trim().isLength({min:20}).escape().withMessage("Description is required"),
   body('stock').trim().isInt().withMessage("Stock must be an integer"),
-], administratorController.editAdminProduct);
+], editAdminProduct);
 
 //EDIT FEATURED IMAGE OF AN EXISTING PRODUCT
 router.put('/edit-image/:productId', isAdministrator, administratorController.updateFeaturedImageOfProduct);
