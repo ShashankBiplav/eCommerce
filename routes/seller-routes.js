@@ -3,7 +3,8 @@ import express from 'express';
 import {body} from 'express-validator';
 
 //controllers
-import {createNewSellerProduct} from "../controllers/seller/create-new-product.js";
+import {createNewSellerProduct} from "../controllers/seller/create-product.js";
+import {updateFeaturedSellerProductImage} from "../controllers/seller/update-featured-image.js";
 
 //middleware
 import {isSeller} from "../middleware/is-seller.js";
@@ -19,5 +20,7 @@ router.post('/create-product', isSeller, [
   body('description').not().isEmpty().trim().isLength({min:20}).escape().withMessage("Description is required"),
   body('stock').trim().isInt().withMessage("Stock must be an integer")
 ], createNewSellerProduct);
+
+router.post('/update-image/:productId',isSeller, updateFeaturedSellerProductImage);
 
 export default router;
