@@ -13,6 +13,7 @@ import {getAllUsers} from "../controllers/admin/get-all-users.js";
 import {getAllBuyers} from "../controllers/admin/get-all-buyers.js";
 import {getAllSellers} from "../controllers/admin/get-all-sellers.js";
 import {getAllSellerProducts} from "../controllers/admin/get-seller-products.js";
+import {getAllAdminProducts} from "../controllers/admin/get-admin-products.js";
 
 //middlewares
 import {isAdministrator} from "../middleware/is-administrator.js";
@@ -37,11 +38,17 @@ router.post('/sellers', isAdministrator,[
   body('limit').trim().isInt().withMessage("Stock must be an integer"),
 ], getAllSellers);
 
-//GET ALL SELLERS
+//GET ALL SELLER'S PRODUCTS
 router.post('/seller-products/:sellerId', isAdministrator,[
   body('offset').trim().isInt().withMessage("Stock must be an integer"),
   body('limit').trim().isInt().withMessage("Stock must be an integer"),
 ], getAllSellerProducts);
+
+// GET ALL ADMIN PRODUCTS
+router.post('/my-products', isAdministrator,[
+  body('offset').trim().isInt().withMessage("Stock must be an integer"),
+  body('limit').trim().isInt().withMessage("Stock must be an integer"),
+], getAllAdminProducts);
 
 //UPDATE ADMIN PROFILE
 router.post('/update-profile', isAdministrator,[
