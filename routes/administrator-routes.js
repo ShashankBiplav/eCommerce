@@ -2,8 +2,11 @@ import express from 'express';
 
 import {body} from 'express-validator';
 
+//controllers
+import {changeAdministratorDetails} from "../controllers/admin/change-admin-details.js";
 import * as administratorController from "../controllers/administrator-controller.js";
 
+//middlewares
 import {isAdministrator} from "../middleware/is-administrator.js";
 
 const router = express.Router();
@@ -13,7 +16,7 @@ router.post('/update-profile', isAdministrator,[
   body('name').not().isEmpty().trim().escape().withMessage("Name is required"),
   body('email').isEmail().normalizeEmail().withMessage("Should be in a valid email format"),
   body('password').trim().isLength({min:6}).withMessage("Password must be 6 characters long")
-], administratorController.changeAdministratorDetails);
+], changeAdministratorDetails);
 
 //CREATE NEW PRODUCT
 router.post('/add-product', isAdministrator,[
