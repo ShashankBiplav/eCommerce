@@ -30,6 +30,7 @@ import UserDetail from "./models/user-detail.js";
 import authenticationRoutes from "./routes/authentication-routes.js";
 import administratorRoutes from "./routes/administrator-routes.js";
 import userRoutes from "./routes/user-routes.js";
+import sellerRoutes from "./routes/seller-routes.js";
 
 //multer file storage
 const fileStorage = multer.diskStorage({
@@ -83,6 +84,8 @@ app.use(corsError);
 app.use('/auth',authenticationRoutes);
 
 app.use('/administrator',administratorRoutes);
+
+app.use('/seller', sellerRoutes);
 
 app.use('/user', userRoutes);
 

@@ -29,7 +29,7 @@ router.post('/add-product', isAdministrator,[
   body('costPrice').isNumeric().not().isEmpty().withMessage("Should be in a Decimal format"),
   body('discount').isNumeric().not().isEmpty().withMessage("Should be in a Decimal format"),
   body('description').not().isEmpty().trim().isLength({min:20}).escape().withMessage("Description is required"),
-  body('stock').trim().isInt().withMessage("Stock must be an integer"),
+  body('stock').trim().isInt().withMessage("Stock must be an integer")
 ], createNewAdminProduct);
 
 //EDIT AN EXISTING PRODUCT

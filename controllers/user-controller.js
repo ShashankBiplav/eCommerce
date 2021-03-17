@@ -27,8 +27,7 @@ export const createNewUserProduct = async (req, res, next) => {
       costPrice,
       discount,
       description,
-      stock,
-      isAdminProduct: false
+      stock
     });
     console.log(response);
   }catch (err) {
