@@ -2,10 +2,10 @@
 import jwt from "jsonwebtoken";
 
 //models
-import Administrator from "../../models/administrator.js";
+import Administrator from "../../../models/administrator.js";
 
 //helpers
-import {validationErrorHandler} from "../../helpers/validation-error-handler.js";
+import {validationErrorHandler} from "../../../helpers/validation-error-handler.js";
 
 
 export const adminLoginPhone = async (req, res, next) => {

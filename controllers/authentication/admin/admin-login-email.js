@@ -3,10 +3,10 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
 //models
-import Administrator from "../../models/administrator.js";
+import Administrator from "../../../models/administrator.js";
 
 //helpers
-import {validationErrorHandler} from "../../helpers/validation-error-handler.js";
+import {validationErrorHandler} from "../../../helpers/validation-error-handler.js";
 
 
 export const adminLoginEmail = async (req, res, next) => {

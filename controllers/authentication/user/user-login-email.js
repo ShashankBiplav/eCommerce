@@ -3,10 +3,10 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
 //models
-import User from "../../models/user.js";
+import User from "../../../models/user.js";
 
 //helpers
-import {validationErrorHandler} from "../../helpers/validation-error-handler.js";
+import {validationErrorHandler} from "../../../helpers/validation-error-handler.js";
 
 
 export const userLoginEmail = async (req, res, next) => {

@@ -2,10 +2,10 @@
 import jwt from "jsonwebtoken";
 
 //models
-import User from "../../models/user.js";
+import User from "../../../models/user.js";
 
 //helpers
-import {validationErrorHandler} from "../../helpers/validation-error-handler.js";
+import {validationErrorHandler} from "../../../helpers/validation-error-handler.js";
 
 export const userLoginPhone = async (req, res, next) => {
   validationErrorHandler(req, next);

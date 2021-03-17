@@ -1,11 +1,11 @@
 //models
-import User from "../../models/user.js";
+import User from "../../../models/user.js";
 
 //helpers
-import {validationErrorHandler} from "../../helpers/validation-error-handler.js";
-import {generateOTP} from "../../helpers/generate-otp.js";
-import {sendOtp} from "../../helpers/sendOtp.js";
-import {isPhoneUnique} from "../../helpers/is-phone-unique.js";
+import {validationErrorHandler} from "../../../helpers/validation-error-handler.js";
+import {generateOTP} from "../../../helpers/generate-otp.js";
+import {sendOtp} from "../../../helpers/sendOtp.js";
+import {isPhoneUnique} from "../../../helpers/is-phone-unique.js";
 
 export const userSignupPhone = async (req, res, next) => {
   validationErrorHandler(req, next);

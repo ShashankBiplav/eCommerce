@@ -1,9 +1,9 @@
 //models
-import Administrator from "../../models/administrator.js";
+import User from "../../../models/user.js";
 
-export const adminLogout = async(req, res, next) => {
+export const userLogout = async(req, res, next) => {
   try{
-    const result = await Administrator.update({
+    const result = await User.update({
       refreshToken: null
     },{
       where:{

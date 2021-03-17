@@ -2,14 +2,14 @@ import express from 'express';
 
 import {body} from 'express-validator';
 
-import {adminSignupPhone} from '../controllers/authentication/admin-signup-phone.js';
-import {adminLoginPhone} from "../controllers/authentication/admin-login-phone.js";
-import {userSignupPhone} from "../controllers/authentication/user-signup-phone.js";
-import {userLoginPhone} from "../controllers/authentication/user-login-phone.js";
-import {adminLoginEmail} from "../controllers/authentication/admin-login-email.js";
-import {userLoginEmail} from "../controllers/authentication/user-login-email.js";
-import {adminLogout} from "../controllers/authentication/admin-logout.js";
-import {userLogout} from "../controllers/authentication/user-logout.js";
+import {adminSignupPhone} from '../controllers/authentication/admin/admin-signup-phone.js';
+import {adminLoginPhone} from "../controllers/authentication/admin/admin-login-phone.js";
+import {userSignupPhone} from "../controllers/authentication/user/user-signup-phone.js";
+import {userLoginPhone} from "../controllers/authentication/user/user-login-phone.js";
+import {adminLoginEmail} from "../controllers/authentication/admin/admin-login-email.js";
+import {userLoginEmail} from "../controllers/authentication/user/user-login-email.js";
+import {adminLogout} from "../controllers/authentication/admin/admin-logout.js";
+import {userLogout} from "../controllers/authentication/user/user-logout.js";
 
 //middleware
 import {isAdministrator} from "../middleware/is-administrator.js";
@@ -56,7 +56,7 @@ router.post('/user/login/phone', [
 // ADMIN LOGOUT
 router.put('/administrator/logout', isAdministrator, adminLogout);
 
-// ADMIN LOGOUT
+// USER LOGOUT
 router.put('/user/logout', isAdministrator, userLogout);
 
 export default router;

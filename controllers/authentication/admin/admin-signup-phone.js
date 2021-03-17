@@ -1,11 +1,11 @@
 //models
-import Administrator from "../../models/administrator.js";
+import Administrator from "../../../models/administrator.js";
 
 //helpers
-import {validationErrorHandler} from "../../helpers/validation-error-handler.js";
-import {generateOTP} from "../../helpers/generate-otp.js";
-import {sendOtp} from "../../helpers/sendOtp.js";
-import {isPhoneUnique} from "../../helpers/is-phone-unique.js";
+import {validationErrorHandler} from "../../../helpers/validation-error-handler.js";
+import {generateOTP} from "../../../helpers/generate-otp.js";
+import {sendOtp} from "../../../helpers/sendOtp.js";
+import {isPhoneUnique} from "../../../helpers/is-phone-unique.js";
 
 export const adminSignupPhone = async (req, res, next) => {
   validationErrorHandler(req, next);
