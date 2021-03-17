@@ -10,6 +10,7 @@ import {updateFeaturedImageOfProduct} from "../controllers/admin/update-featured
 import {toggleUserStatus} from "../controllers/admin/toggle-user-status.js";
 import {toggleProductParameters} from "../controllers/admin/toggle-product-parameters.js";
 import {getAllUsers} from "../controllers/admin/get-all-users.js";
+import {getAllBuyers} from "../controllers/admin/get-all-buyers.js";
 
 //middlewares
 import {isAdministrator} from "../middleware/is-administrator.js";
@@ -21,6 +22,12 @@ router.post('/users', isAdministrator,[
   body('offset').trim().isInt().withMessage("Stock must be an integer"),
   body('limit').trim().isInt().withMessage("Stock must be an integer"),
 ], getAllUsers);
+
+//GET ALL USERS
+router.post('/buyers', isAdministrator,[
+  body('offset').trim().isInt().withMessage("Stock must be an integer"),
+  body('limit').trim().isInt().withMessage("Stock must be an integer"),
+], getAllBuyers);
 
 //UPDATE ADMIN PROFILE
 router.post('/update-profile', isAdministrator,[

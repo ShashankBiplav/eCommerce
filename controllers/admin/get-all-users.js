@@ -1,5 +1,7 @@
 //models
 import User from "../../models/user.js";
+
+//helpers
 import {validationErrorHandler} from "../../helpers/validation-error-handler.js";
 
 export const getAllUsers = async (req, res, next) => {
