@@ -24,7 +24,7 @@ const UserDetail = sequelize.define("user_detail", {
   },
   gstFile: {
     type: Sequelize.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   businessType: {
     type: Sequelize.STRING,
@@ -49,15 +49,7 @@ const UserDetail = sequelize.define("user_detail", {
   country: {
     type: Sequelize.STRING,
     allowNull: false,
-  },
-  isAuthorized: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: false,
-  },
-  refreshToken: {
-    type: Sequelize.STRING,
-    allowNull: true
-  },
+  }
 });
 
 export default UserDetail;
