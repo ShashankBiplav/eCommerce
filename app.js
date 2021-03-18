@@ -1,5 +1,7 @@
 import path from "path";
 import fs from "fs";
+import cluster from "cluster";
+import os from "os";
 
 import express from "express";
 import multer from "multer";
@@ -7,6 +9,8 @@ import sequelize from "./utilities/database.js";
 import helmet from "helmet";
 import compression from "compression";
 import dotenv from "dotenv";
+
+const cpu = os.cpus().length;
 
 if (process.env.NODE_ENV !== 'production') {
 dotenv.config();
@@ -20,88 +24,93 @@ const app = express();
 import {corsError} from "./middleware/error-handlers/cors-error.js";
 import {centralError} from "./middleware/error-handlers/central-error.js";
 
-//all models imported here
-import Administrator from "./models/administrator.js";
-import User from "./models/user.js";
-import Product from "./models/product.js";
-import UserDetail from "./models/user-detail.js";
-
 //all routes imported here
 import authenticationRoutes from "./routes/authentication-routes.js";
 import administratorRoutes from "./routes/administrator-routes.js";
 import userRoutes from "./routes/user-routes.js";
 import sellerRoutes from "./routes/seller-routes.js";
 
+if (cluster.isMaster) {
+  console.log(`Master ${process.pid} is running`);
+  for (let i = 0; i < cpu; i++) {
+    cluster.fork();
+  }
+  console.log(cpu);
+  cluster.on("exit", (worker, code, signal) => {
+    console.log(`worker ${worker.process.pid} died`);
+  });
+} else {
 //multer file storage
-const fileStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    let dir = "./images";
-    //this will create the folder if not exists
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir);
-    }
-    cb(null, dir);
-  },
-  filename: (req, file, cb) => {
-    cb(null, new Date().toISOString().replace(/:/g, '-') + '-' + file.originalname.toString().replace(/\s/g, '-'));
-  },
-});
+  const fileStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      let dir = "./images";
+      //this will create the folder if not exists
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir);
+      }
+      cb(null, dir);
+    },
+    filename: (req, file, cb) => {
+      cb(null, new Date().toISOString().replace(/:/g, '-') + '-' + file.originalname.toString().replace(/\s/g, '-'));
+    },
+  });
 
 //multer file filter
-const fileFilter = (req, file, cb) => {
-  if (
-    file.mimetype === 'image/jpg' ||
-    file.mimetype === 'image/png' ||
-    file.mimetype === 'image/jpeg' ||
-    file.mimetype === 'application/pdf'
-  ) {
-    cb(null, true);
-  } else {
-    cb(null, false);
-  }
-};
+  const fileFilter = (req, file, cb) => {
+    if (
+      file.mimetype === 'image/jpg' ||
+      file.mimetype === 'image/png' ||
+      file.mimetype === 'image/jpeg' ||
+      file.mimetype === 'application/pdf'
+    ) {
+      cb(null, true);
+    } else {
+      cb(null, false);
+    }
+  };
 //defining absolute path of current WORKDIR
-const __dirname = path.resolve();
-
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-app.use(express.static(__dirname));
-app.use(express.static(path.join(__dirname, 'public')));
+  const __dirname = path.resolve();
+  
+  app.use(express.urlencoded({extended: false}));
+  app.use(express.json());
+  app.use(express.static(__dirname));
+  app.use(express.static(path.join(__dirname, 'public')));
 
 // multer configuration
-app.use(
-  multer({
-    storage: fileStorage,
-    fileFilter: fileFilter,
-  }).single('image')
-);
-
-app.use('/images', express.static(path.join(__dirname, 'images')));
+  app.use(
+    multer({
+      storage: fileStorage,
+      fileFilter: fileFilter,
+    }).single('image')
+  );
+  
+  app.use('/images', express.static(path.join(__dirname, 'images')));
 
 //handle cors error
-app.use(corsError);
+  app.use(corsError);
 
 //all routes entrypoint here
-app.use('/auth',authenticationRoutes);
-
-app.use('/administrator',administratorRoutes);
-
-app.use('/seller', sellerRoutes);
-
-app.use('/user', userRoutes);
-
-app.use(helmet());
-app.use(compression());
+  app.use('/auth', authenticationRoutes);
+  
+  app.use('/administrator', administratorRoutes);
+  
+  app.use('/seller', sellerRoutes);
+  
+  app.use('/user', userRoutes);
+  
+  app.use(helmet());
+  app.use(compression());
 
 //central error handler here
-app.use(centralError);
+  app.use(centralError);
 
 // sync with database
-sequelize
-  .sync()
-  .then(() => {
-    app.listen(port);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+  sequelize
+    .sync()
+    .then(() => {
+      app.listen(port);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
