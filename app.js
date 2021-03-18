@@ -13,7 +13,7 @@ import dotenv from "dotenv";
 const cpu = os.cpus().length;
 
 if (process.env.NODE_ENV !== 'production') {
-dotenv.config();
+  dotenv.config();
 }
 
 const port = process.env.PORT || 3300;
