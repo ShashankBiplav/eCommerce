@@ -15,11 +15,15 @@ import {getAllSellers} from "../controllers/admin/get-all-sellers.js";
 import {getAllSellerProducts} from "../controllers/admin/get-seller-products.js";
 import {getAllAdminProducts} from "../controllers/admin/get-admin-products.js";
 import {getAllProducts} from "../controllers/admin/get-all-products.js";
+import {getAllUserDetails} from "../controllers/admin/get-user-details.js";
 
 //middlewares
 import {isAdministrator} from "../middleware/is-administrator.js";
 
 const router = express.Router();
+
+//GET ALL USER DETAILS OF A USER
+router.get('/user-details/:userId', isAdministrator, getAllUserDetails);
 
 //GET ALL USERS
 router.post('/users', isAdministrator, [
