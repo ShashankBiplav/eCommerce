@@ -1,10 +1,10 @@
 //models
-import Product from "../../models/product.js";
+import Category from "../../models/category.js";
 
 //helpers
 import {clearImage} from "../../helpers/clear-image.js";
 
-export const updateFeaturedImageOfProduct = async (req, res, next) => {
+export const updateCategoryImage = async (req, res, next) => {
   try {
     if (!req.file) {
       const error = new Error('No image provided');
@@ -12,26 +12,25 @@ export const updateFeaturedImageOfProduct = async (req, res, next) => {
       return next(error);
     }
     const imageUrl = req.file.path;
-    const product = await Product.findByPk(req.params.productId);
-    if (!product) {
+    const category = await Category.findByPk(req.params.categoryId);
+    if (!category) {
       clearImage(imageUrl);
-      const error = new Error('No such product found');
+      const error = new Error('No such category found');
       error.statusCode = 404;
       return next(error);
     }
-    if (imageUrl !== product["dataValues"]["imageUrl"]) { //new image was uploaded
-      clearImage(product["dataValues"]["imageUrl"]);
+    if (imageUrl !== category["dataValues"]["imageUrl"]) { //new image was uploaded
+      clearImage(category["dataValues"]["imageUrl"]);
     }
-    await Product.update({
+    await Category.update({
       imageUrl
     }, {
       where: {
-        id: req.params.productId,
-        userId: req.userId,
+        id: req.params.categoryId,
       }
     });
     res.status(201).json({
-      message: "Product featured image updated"
+      message: "Category featured image updated"
     });
   } catch (err) {
     if (!err.statusCode) {

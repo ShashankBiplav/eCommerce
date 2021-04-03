@@ -9,6 +9,7 @@ import {createNewCategory} from "../controllers/admin/create-category.js";
 import {editAdminProduct} from "../controllers/admin/edit-product.js";
 import {updateExistingCategory} from "../controllers/admin/update-category.js";
 import {updateFeaturedImageOfProduct} from "../controllers/admin/update-featured-image.js";
+import {updateCategoryImage} from "../controllers/admin/update-category-image.js";
 import {toggleUserStatus} from "../controllers/admin/toggle-user-status.js";
 import {toggleProductParameters} from "../controllers/admin/toggle-product-parameters.js";
 import {getAllUsers} from "../controllers/admin/get-all-users.js";
@@ -104,6 +105,9 @@ router.put('/edit-category/:categoryId', isAdministrator, [
 
 //EDIT FEATURED IMAGE OF AN EXISTING PRODUCT
 router.put('/edit-image/:productId', isAdministrator, updateFeaturedImageOfProduct);
+
+//EDIT CATEGORY IMAGE
+router.put('/edit-category-image/:categoryId', isAdministrator, updateCategoryImage);
 
 //EDIT BUYER, SELLER, AUTHORIZATION STATUS OF A USER
 router.patch('/edit-user/:userId', isAdministrator, [
