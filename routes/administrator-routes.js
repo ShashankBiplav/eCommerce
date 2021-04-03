@@ -5,6 +5,7 @@ import {body} from 'express-validator';
 //controllers
 import {changeAdministratorDetails} from "../controllers/admin/change-admin-details.js";
 import {createNewAdminProduct} from "../controllers/admin/create-product.js";
+import {createNewCategory} from "../controllers/admin/create-category.js";
 import {editAdminProduct} from "../controllers/admin/edit-product.js";
 import {updateFeaturedImageOfProduct} from "../controllers/admin/update-featured-image.js";
 import {toggleUserStatus} from "../controllers/admin/toggle-user-status.js";
@@ -77,6 +78,12 @@ router.post('/add-product', isAdministrator, [
   body('description').not().isEmpty().trim().isLength({min: 20}).escape().withMessage("Description is required"),
   body('stock').trim().isInt().withMessage("Stock must be an integer")
 ], createNewAdminProduct);
+
+// CREATE NEW CATEGORY
+router.post('/add-category', isAdministrator,[
+  body('name').not().isEmpty().trim().escape().withMessage("Title is required"),
+  body('description').not().isEmpty().trim().isLength({min: 20}).escape().withMessage("Description is required"),
+], createNewCategory);
 
 //EDIT AN EXISTING PRODUCT
 router.put('/edit-product/:productId', isAdministrator, [
