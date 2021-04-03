@@ -12,6 +12,7 @@ import {updateExistingCategory} from "../controllers/admin/update-category.js";
 import {updateExistingBrand} from "../controllers/admin/update-brand.js";
 import {updateFeaturedImageOfProduct} from "../controllers/admin/update-featured-image.js";
 import {updateCategoryImage} from "../controllers/admin/update-category-image.js";
+import {updateBrandImage} from "../controllers/admin/update-brand-image.js";
 import {toggleUserStatus} from "../controllers/admin/toggle-user-status.js";
 import {toggleProductParameters} from "../controllers/admin/toggle-product-parameters.js";
 import {getAllUsers} from "../controllers/admin/get-all-users.js";
@@ -122,6 +123,9 @@ router.put('/edit-image/:productId', isAdministrator, updateFeaturedImageOfProdu
 
 //EDIT CATEGORY IMAGE
 router.put('/edit-category-image/:categoryId', isAdministrator, updateCategoryImage);
+
+//EDIT BRAND IMAGE
+router.put('/edit-brand-image/:brandId', isAdministrator, updateBrandImage);
 
 //EDIT BUYER, SELLER, AUTHORIZATION STATUS OF A USER
 router.patch('/edit-user/:userId', isAdministrator, [
