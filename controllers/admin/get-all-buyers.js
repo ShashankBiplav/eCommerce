@@ -10,7 +10,8 @@ export const getAllBuyers = async (req, res, next) => {
   try{
     const users = await User.findAndCountAll({
       where:{
-        isBuyer: true
+        isBuyer: true,
+        isAdmin:false
       },
       offset:parseInt(offset),
       limit: parseInt(limit),

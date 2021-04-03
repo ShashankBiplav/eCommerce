@@ -41,6 +41,10 @@ const User = sequelize.define("user", {
     type: Sequelize.BOOLEAN,
     defaultValue: false,
   },
+  isAdmin:{
+    type:Sequelize.BOOLEAN,
+    defaultValue:false
+  },
   isVerified: {
     type: Sequelize.BOOLEAN,
     defaultValue: false,

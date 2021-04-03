@@ -10,7 +10,7 @@ export const getAllAdminProducts = async (req, res, next) => {
   try{
     const products = await Product.findAndCountAll({
       where:{
-        adminId: req.userId
+        userId: req.userId
       },
       offset:parseInt(offset),
       limit: parseInt(limit),

@@ -18,7 +18,7 @@ export const editAdminProduct = async (req, res, next) => {
     }, {
       where: {
         id: req.params.productId,
-        adminId: req.userId,
+        userId: req.userId,
       }
     });
     if (result[0] === 0) {

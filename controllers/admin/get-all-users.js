@@ -11,6 +11,9 @@ export const getAllUsers = async (req, res, next) => {
   const users = await User.findAndCountAll({
     offset:parseInt(offset),
     limit: parseInt(limit),
+    where:{
+      isAdmin: false
+    },
     attributes:{
       exclude:['password', 'otp', 'refreshToken']
     }

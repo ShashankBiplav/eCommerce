@@ -2,7 +2,7 @@
 import jwt from "jsonwebtoken";
 
 //models
-import Administrator from "../../../models/administrator.js";
+import User from "../../../models/user.js";
 
 //helpers
 import {validationErrorHandler} from "../../../helpers/validation-error-handler.js";
@@ -11,10 +11,11 @@ export const adminGetNewTokens = async (req, res, next) => {
   validationErrorHandler(req, next);
   const {refreshToken} = req.body;
   try {
-    const admin = await Administrator.findOne({
+    const admin = await User.findOne({
         where: {
           id: req.userId,
-          refreshToken
+          refreshToken,
+          isAdmin: true
         }
       }
     );
@@ -28,8 +29,8 @@ export const adminGetNewTokens = async (req, res, next) => {
     const phone = admin["dataValues"]["phone"];
     const token = jwt.sign({id, phone}, process.env.TOKEN_SIGNING_KEY, {expiresIn: '1 day'});
     const newRefreshToken = jwt.sign({id, phone, name}, process.env.REFRESH_TOKEN_SIGNING_KEY);
-    await Administrator.update({refreshToken: newRefreshToken},{
-      where:{
+    await User.update({refreshToken: newRefreshToken}, {
+      where: {
         id: req.userId,
         refreshToken: refreshToken
       }

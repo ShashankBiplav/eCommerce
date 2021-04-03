@@ -1,9 +1,9 @@
 import jwt from "jsonwebtoken";
 
 //importing driver model
-import Administrator from "../models/administrator.js";
+import User from "../models/user.js";
 
-export const isAdministrator= async (req, res, next) => {
+export const isAdministrator = async (req, res, next) => {
   const authHeader = req.get('Authorization');
   try {
     if (!authHeader) {
@@ -19,13 +19,21 @@ export const isAdministrator= async (req, res, next) => {
       error.statusCode = 401;
       next(error);
     }
-    const administrator = await Administrator.findOne({where: {phone: decodedToken.phone}});
+    const administrator = await User.findOne(
+      {
+        where:
+          {
+            phone: decodedToken.phone,
+            isAdmin: true
+          }
+      }
+    );
     if (!administrator) {
       const error = new Error('Administrator not found');
       error.statusCode = 404;
       next(error);
     }
-    if(!administrator["dataValues"]["isVerified"]){
+    if (!administrator["dataValues"]["isVerified"]) {
       const error = new Error('Not Verified Administrator');
       error.statusCode = 403;
       return next(error);

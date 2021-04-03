@@ -1,5 +1,5 @@
 //models
-import Administrator from "../../../models/administrator.js";
+import User from "../../../models/user.js";
 
 //helpers
 import {validationErrorHandler} from "../../../helpers/validation-error-handler.js";
@@ -14,19 +14,23 @@ export const adminSignupPhone = async (req, res, next) => {
   try {
     const response = await sendOtp(otp, phone);
     if (response.status === 200) {
-      const isUnique = await isPhoneUnique(Administrator, phone);
+      const isUnique = await isPhoneUnique(User, phone);
       if (!isUnique) {
-        await Administrator.update({otp}, {
+        await User.update({otp}, {
           where: {phone}
         });
         res.status(201).json({
           msg: `Admin already exists. OTP sent to ${phone}`,
         });
       } else {
-        await Administrator.create({
+        await User.create({
           name,
           phone,
-          otp
+          otp,
+          isAdmin: true,
+          isBuyer: true,
+          isSeller: true,
+          isAuthorized: true
         });
         res.status(201).json({
           msg: `Admin registered! OTP sent to ${phone}`

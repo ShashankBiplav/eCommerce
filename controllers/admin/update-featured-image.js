@@ -27,7 +27,7 @@ export const updateFeaturedImageOfProduct = async (req, res, next) => {
     }, {
       where: {
         id: req.params.productId,
-        adminId: req.userId,
+        userId: req.userId,
       }
     });
     res.status(201).json({

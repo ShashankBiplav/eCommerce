@@ -1,0 +1,42 @@
+//models
+import UserDetail from "../../models/user-detail";
+
+//helpers
+import {clearImage} from "../../helpers/clear-image.js";
+
+export const uploadGst = async (req, res, next) => {
+  // try {
+  //   if (!req.file) {
+  //     const error = new Error('No image provided');
+  //     error.statusCode = 422;
+  //     return next(error);
+  //   }
+  //   const imageUrl = req.file.path;
+  //   const product = await Product.findByPk(req.params.productId);
+  //   if (!product) {
+  //     clearImage(imageUrl);
+  //     const error = new Error('No such product found');
+  //     error.statusCode = 404;
+  //     return next(error);
+  //   }
+  //   if (imageUrl !== product["dataValues"]["imageUrl"]) {
+  //     clearImage(product["dataValues"]["imageUrl"]);
+  //   }
+  //   const result = await Product.update({
+  //     imageUrl
+  //   }, {
+  //     where: {
+  //       id: req.params.productId,
+  //       adminId: req.userId,
+  //     }
+  //   });
+  //   res.status(201).json({
+  //     message: "Product featured image updated"
+  //   });
+  // } catch (err) {
+  //   if (!err.statusCode) {
+  //     err.statusCode = 500;
+  //   }
+  //   next(err);
+  // }
+};

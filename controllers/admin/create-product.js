@@ -1,12 +1,12 @@
 //models
 import Product from "../../models/product.js";
-import Administrator from "../../models/administrator.js";
+import User from "../../models/user.js";
 
 //helpers
 import {validationErrorHandler} from "../../helpers/validation-error-handler.js";
 
 //DB relations
-Administrator.hasMany(Product);
+User.hasMany(Product);
 
 export const createNewAdminProduct = async (req, res, next) => {
   validationErrorHandler(req, next);
@@ -19,7 +19,7 @@ export const createNewAdminProduct = async (req, res, next) => {
     }
     const imageUrl = req.file.path;
     const response = await Product.create({
-      adminId: req.userId,
+      userId: req.userId,
       title,
       price,
       imageUrl,
