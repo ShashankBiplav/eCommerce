@@ -22,6 +22,7 @@ import {getAllSellerProducts} from "../controllers/admin/get-seller-products.js"
 import {getAllAdminProducts} from "../controllers/admin/get-admin-products.js";
 import {getAllProducts} from "../controllers/admin/get-all-products.js";
 import {getAllUserDetails} from "../controllers/admin/get-user-details.js";
+import {addProductToCategory} from "../controllers/admin/add-product-to-category.js";
 
 //middlewares
 import {isAdministrator} from "../middleware/is-administrator.js";
@@ -95,6 +96,12 @@ router.post('/add-brand', isAdministrator, [
   body('name').not().isEmpty().trim().escape().withMessage("Title is required"),
   body('description').not().isEmpty().trim().isLength({min: 20}).escape().withMessage("Description is required"),
 ], createNewBrand);
+
+//ADD A PRODUCT TO A CATEGORY
+router.post('/add-product-to-category', isAdministrator,[
+  body('productId').isInt().not().isEmpty().withMessage("ProductId is required"),
+  body('categoryId').isInt().not().isEmpty().withMessage("ProductId is required"),
+], addProductToCategory);
 
 //EDIT AN EXISTING PRODUCT
 router.put('/edit-product/:productId', isAdministrator, [
