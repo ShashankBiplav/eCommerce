@@ -15,13 +15,13 @@ export const createNewBrand = async (req, res, next) => {
       return next(error);
     }
     const imageUrl = req.file.path;
-    const preExistingCategory = await Brand.findOne({
+    const preExistingBrand = await Brand.findOne({
       where: {
         name,
         description
       }
     });
-    if (preExistingCategory){
+    if (preExistingBrand){
       clearImage(imageUrl);
       const error = new Error('Brand Already Exists');
       error.statusCode = 403;

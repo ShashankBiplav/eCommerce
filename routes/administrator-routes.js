@@ -9,6 +9,7 @@ import {createNewCategory} from "../controllers/admin/create-category.js";
 import {createNewBrand} from "../controllers/admin/create-brand.js";
 import {editAdminProduct} from "../controllers/admin/edit-product.js";
 import {updateExistingCategory} from "../controllers/admin/update-category.js";
+import {updateExistingBrand} from "../controllers/admin/update-brand.js";
 import {updateFeaturedImageOfProduct} from "../controllers/admin/update-featured-image.js";
 import {updateCategoryImage} from "../controllers/admin/update-category-image.js";
 import {toggleUserStatus} from "../controllers/admin/toggle-user-status.js";
@@ -109,6 +110,12 @@ router.put('/edit-category/:categoryId', isAdministrator, [
   body('name').not().isEmpty().trim().escape().withMessage("Title is required"),
   body('description').not().isEmpty().trim().isLength({min: 20}).escape().withMessage("Description is required"),
 ], updateExistingCategory);
+
+//EDIT AN EXISTING BRAND
+router.put('/edit-brand/:brandId', isAdministrator, [
+  body('name').not().isEmpty().trim().escape().withMessage("Title is required"),
+  body('description').not().isEmpty().trim().isLength({min: 20}).escape().withMessage("Description is required"),
+], updateExistingBrand);
 
 //EDIT FEATURED IMAGE OF AN EXISTING PRODUCT
 router.put('/edit-image/:productId', isAdministrator, updateFeaturedImageOfProduct);
