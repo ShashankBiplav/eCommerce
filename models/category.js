@@ -2,7 +2,7 @@ import Sequelize from "sequelize";
 
 import sequelize from "../utilities/database.js";
 
-const Customer = sequelize.define("customer", {
+const Category = sequelize.define("category", {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
@@ -13,38 +13,26 @@ const Customer = sequelize.define("customer", {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  email: {
+  imageUrl: {
     type: Sequelize.STRING,
     allowNull: true,
   },
-  password: {
+  iconUrl: {
     type: Sequelize.STRING,
     allowNull: true,
   },
-  phone: {
+  description: {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  otp: {
-    type: Sequelize.INTEGER,
-    allowNull: true,
-  },
-  profileImageUrl:{
-    type: Sequelize.STRING,
-    allowNull: true,
-  },
-  isVerified: {
+  isFeatured: {
     type: Sequelize.BOOLEAN,
     defaultValue: false,
   },
-  isAuthorized: {
+  isActive: {
     type: Sequelize.BOOLEAN,
     defaultValue: false,
-  },
-  refreshToken: {
-    type: Sequelize.STRING,
-    allowNull: true
   },
 });
 
-export default Customer;
+export default Category;
