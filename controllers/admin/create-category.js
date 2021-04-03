@@ -1,9 +1,9 @@
 //models
-import Product from "../../models/product.js";
 import Category from "../../models/category.js";
 
 //helpers
 import {validationErrorHandler} from "../../helpers/validation-error-handler.js";
+import {clearImage} from "../../helpers/clear-image.js";
 
 export const createNewCategory = async (req, res, next) => {
   validationErrorHandler(req, next);
@@ -14,6 +14,7 @@ export const createNewCategory = async (req, res, next) => {
       error.statusCode = 422;
       return next(error);
     }
+    const imageUrl = req.file.path;
     const preExistingCategory = await Category.findOne({
       where: {
         name,
@@ -21,11 +22,11 @@ export const createNewCategory = async (req, res, next) => {
       }
     });
     if (preExistingCategory){
+      clearImage(imageUrl);
       const error = new Error('Category Already Exists');
       error.statusCode = 403;
       return next(error);
     }
-    const imageUrl = req.file.path;
     const response = await Category.create({
       name,
       imageUrl,

@@ -7,6 +7,7 @@ import {changeAdministratorDetails} from "../controllers/admin/change-admin-deta
 import {createNewAdminProduct} from "../controllers/admin/create-product.js";
 import {createNewCategory} from "../controllers/admin/create-category.js";
 import {editAdminProduct} from "../controllers/admin/edit-product.js";
+import {updateExistingCategory} from "../controllers/admin/update-category.js";
 import {updateFeaturedImageOfProduct} from "../controllers/admin/update-featured-image.js";
 import {toggleUserStatus} from "../controllers/admin/toggle-user-status.js";
 import {toggleProductParameters} from "../controllers/admin/toggle-product-parameters.js";
@@ -80,7 +81,7 @@ router.post('/add-product', isAdministrator, [
 ], createNewAdminProduct);
 
 // CREATE NEW CATEGORY
-router.post('/add-category', isAdministrator,[
+router.post('/add-category', isAdministrator, [
   body('name').not().isEmpty().trim().escape().withMessage("Title is required"),
   body('description').not().isEmpty().trim().isLength({min: 20}).escape().withMessage("Description is required"),
 ], createNewCategory);
@@ -94,6 +95,12 @@ router.put('/edit-product/:productId', isAdministrator, [
   body('description').not().isEmpty().trim().isLength({min: 20}).escape().withMessage("Description is required"),
   body('stock').trim().isInt().withMessage("Stock must be an integer"),
 ], editAdminProduct);
+
+//EDIT AN EXISTING CATEGORY
+router.put('/edit-category/:categoryId', isAdministrator, [
+  body('name').not().isEmpty().trim().escape().withMessage("Title is required"),
+  body('description').not().isEmpty().trim().isLength({min: 20}).escape().withMessage("Description is required"),
+], updateExistingCategory);
 
 //EDIT FEATURED IMAGE OF AN EXISTING PRODUCT
 router.put('/edit-image/:productId', isAdministrator, updateFeaturedImageOfProduct);
