@@ -25,6 +25,7 @@ import {getAllUserDetails} from "../controllers/admin/get-user-details.js";
 import {addProductToCategory} from "../controllers/admin/add-product-to-category.js";
 import {addProductToBrand} from "../controllers/admin/add-product-to-brand.js";
 import {getAllBrandProducts} from "../controllers/admin/get-brand-products.js";
+import {getAllCategoryProducts} from "../controllers/admin/get-category-products.js";
 
 //middlewares
 import {isAdministrator} from "../middleware/is-administrator.js";
@@ -36,6 +37,9 @@ router.get('/user-details/:userId', isAdministrator, getAllUserDetails);
 
 //GET ALL PRODUCTS OF A BRAND
 router.get('/brand-products/:brandId', isAdministrator, getAllBrandProducts);
+
+//GET ALL PRODUCTS OF A CATEGORY
+router.get('/category-products/:categoryId', isAdministrator, getAllCategoryProducts);
 
 //GET ALL USERS
 router.post('/users', isAdministrator, [
