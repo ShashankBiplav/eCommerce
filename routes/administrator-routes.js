@@ -24,6 +24,7 @@ import {getAllProducts} from "../controllers/admin/get-all-products.js";
 import {getAllUserDetails} from "../controllers/admin/get-user-details.js";
 import {addProductToCategory} from "../controllers/admin/add-product-to-category.js";
 import {addProductToBrand} from "../controllers/admin/add-product-to-brand.js";
+import {getAllBrandProducts} from "../controllers/admin/get-brand-products.js";
 
 //middlewares
 import {isAdministrator} from "../middleware/is-administrator.js";
@@ -32,6 +33,9 @@ const router = express.Router();
 
 //GET ALL USER DETAILS OF A USER
 router.get('/user-details/:userId', isAdministrator, getAllUserDetails);
+
+//GET ALL PRODUCTS OF A BRAND
+router.get('/brand-products/:brandId', isAdministrator, getAllBrandProducts);
 
 //GET ALL USERS
 router.post('/users', isAdministrator, [
