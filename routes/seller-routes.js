@@ -30,6 +30,12 @@ router.post('/add-product-to-brand', isSeller, [
   body('brandId').isInt().not().isEmpty().withMessage("BrandId is required"),
 ], addSellerProductToBrand);
 
+//ADD A SELLERS PRODUCT TO A CATEGORY
+router.post('/add-product-to-category', isSeller, [
+  body('productId').isInt().not().isEmpty().withMessage("ProductId is required"),
+  body('categoryId').isInt().not().isEmpty().withMessage("CategoryId is required"),
+], addSellerProductToBrand);
+
 //EDIT AN EXISTING SELLER PRODUCT
 router.put('/edit-product/:productId', isSeller,[
   body('title').not().isEmpty().trim().escape().withMessage("Title is required"),
