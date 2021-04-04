@@ -115,7 +115,7 @@ router.post('/add-product-to-category', isAdministrator,[
 //ADD A PRODUCT TO A BRAND
 router.post('/add-product-to-brand', isAdministrator,[
   body('productId').isInt().not().isEmpty().withMessage("ProductId is required"),
-  body('brandId').isInt().not().isEmpty().withMessage("ProductId is required"),
+  body('brandId').isInt().not().isEmpty().withMessage("BrandId is required"),
 ], addProductToBrand);
 
 //EDIT AN EXISTING PRODUCT
