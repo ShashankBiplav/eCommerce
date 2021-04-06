@@ -1,6 +1,7 @@
 import Sequelize from "sequelize";
 
 import sequelize from "../utilities/database.js";
+
 import Cart from "./cart.js";
 import Product from "./product.js";
 
