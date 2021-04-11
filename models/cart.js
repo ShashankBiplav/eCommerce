@@ -1,7 +1,7 @@
 import Sequelize from "sequelize";
 
 import sequelize from "../utilities/database.js";
-import User from "./user";
+import User from "./user.js";
 
 const Cart = sequelize.define("cart", {
   id: {

@@ -29,6 +29,7 @@ import authenticationRoutes from "./routes/authentication-routes.js";
 import administratorRoutes from "./routes/administrator-routes.js";
 import userRoutes from "./routes/user-routes.js";
 import sellerRoutes from "./routes/seller-routes.js";
+import buyerRoutes from "./routes/buyer-routes.js";
 
 if (cluster.isMaster) {
   console.log(`Master ${process.pid} is running`);
@@ -95,6 +96,8 @@ if (cluster.isMaster) {
   app.use('/administrator', administratorRoutes);
   
   app.use('/seller', sellerRoutes);
+  
+  app.use('/buyer', buyerRoutes);
   
   app.use('/user', userRoutes);
   
