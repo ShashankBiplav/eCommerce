@@ -60,7 +60,7 @@ export const addProductToCart = async (req, res, next) => {
           cart_products: {
             productId: productId,
             quantity: quantity
-          }
+          },
         }, {
           include: CartProducts
         }
@@ -89,6 +89,9 @@ export const addProductToCart = async (req, res, next) => {
         cartId: preExistingCart["id"],
         productId,
         quantity
+      });
+      return res.status(201).json({
+        message: "Product Added to cart"
       });
     }
     await CartProducts.update({
