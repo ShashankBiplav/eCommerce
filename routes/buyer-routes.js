@@ -5,6 +5,7 @@ import {body} from 'express-validator';
 //controllers
 import {addProductToCart} from "../controllers/buyer/add-product-to-cart.js";
 import {removeProductFromCart} from "../controllers/buyer/remove-product-from-cart.js";
+import {decreaseProductQuantityFromCart} from "../controllers/buyer/decrease-product-quantity-from-cart.js";
 
 //middleware
 import {isBuyer} from "../middleware/is-buyer.js";
@@ -16,5 +17,8 @@ router.post('/add-product-to-cart', isBuyer, addProductToCart);
 
 //REMOVE PRODUCT FROM CART
 router.post('/remove-product-from-cart/:productId', isBuyer, removeProductFromCart);
+
+//DECREASE PRODUCT QUANTITY FROM CART
+router.post('/decrease-product-quantity-cart/:productId', isBuyer, decreaseProductQuantityFromCart);
 
 export default router;
