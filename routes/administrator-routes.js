@@ -28,6 +28,7 @@ import {getAllBrandProducts} from "../controllers/admin/get-brand-products.js";
 import {getAllCategoryProducts} from "../controllers/admin/get-category-products.js";
 import {createCoupon} from "../controllers/admin/create-coupon.js";
 import {toggleCoupon} from "../controllers/admin/toggle-coupon.js";
+import {editCoupon} from "../controllers/admin/edit-coupon.js";
 
 //middlewares
 import {isAdministrator} from "../middleware/is-administrator.js";
@@ -140,6 +141,14 @@ router.put('/edit-product/:productId', isAdministrator, [
 
 //TOGGLE COUPON ACTIVENESS
 router.put ('/toggle-coupon/:couponId', isAdministrator, toggleCoupon);
+
+//UPDATE EXISTING COUPON
+router.put('/update-coupon/:couponId', isAdministrator, [
+  body('name').not().isEmpty().trim().escape().withMessage("Name is required"),
+  body('discountPercentage').isNumeric().not().isEmpty().withMessage("Should be in a Decimal format"),
+  body('description').not().isEmpty().trim().escape().withMessage("Description is required"),
+  body('isActive').not().isEmpty().isBoolean().withMessage('This is a required boolean'),
+], editCoupon);
 
 //EDIT AN EXISTING CATEGORY
 router.put('/edit-category/:categoryId', isAdministrator, [
