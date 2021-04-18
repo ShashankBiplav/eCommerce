@@ -27,6 +27,7 @@ import {addProductToBrand} from "../controllers/admin/add-product-to-brand.js";
 import {getAllBrandProducts} from "../controllers/admin/get-brand-products.js";
 import {getAllCategoryProducts} from "../controllers/admin/get-category-products.js";
 import {createCoupon} from "../controllers/admin/create-coupon.js";
+import {toggleCoupon} from "../controllers/admin/toggle-coupon.js";
 
 //middlewares
 import {isAdministrator} from "../middleware/is-administrator.js";
@@ -136,6 +137,9 @@ router.put('/edit-product/:productId', isAdministrator, [
   body('description').not().isEmpty().trim().isLength({min: 20}).escape().withMessage("Description is required"),
   body('stock').trim().isInt().withMessage("Stock must be an integer"),
 ], editAdminProduct);
+
+//TOGGLE COUPON ACTIVENESS
+router.put ('/toggle-coupon/:couponId', isAdministrator, toggleCoupon);
 
 //EDIT AN EXISTING CATEGORY
 router.put('/edit-category/:categoryId', isAdministrator, [
