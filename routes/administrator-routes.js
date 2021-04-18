@@ -26,6 +26,7 @@ import {addProductToCategory} from "../controllers/admin/add-product-to-category
 import {addProductToBrand} from "../controllers/admin/add-product-to-brand.js";
 import {getAllBrandProducts} from "../controllers/admin/get-brand-products.js";
 import {getAllCategoryProducts} from "../controllers/admin/get-category-products.js";
+import {createCoupon} from "../controllers/admin/create-coupon.js";
 
 //middlewares
 import {isAdministrator} from "../middleware/is-administrator.js";
@@ -105,6 +106,14 @@ router.post('/add-brand', isAdministrator, [
   body('name').not().isEmpty().trim().escape().withMessage("Title is required"),
   body('description').not().isEmpty().trim().isLength({min: 20}).escape().withMessage("Description is required"),
 ], createNewBrand);
+
+//CREATE NEW COUPON
+router.post('/create-coupon', isAdministrator, [
+  body('name').not().isEmpty().trim().escape().withMessage("Name is required"),
+  body('discountPercentage').isNumeric().not().isEmpty().withMessage("Should be in a Decimal format"),
+  body('description').not().isEmpty().trim().escape().withMessage("Description is required"),
+  body('isActive').not().isEmpty().isBoolean().withMessage('This is a required boolean'),
+], createCoupon);
 
 //ADD A PRODUCT TO A CATEGORY
 router.post('/add-product-to-category', isAdministrator,[

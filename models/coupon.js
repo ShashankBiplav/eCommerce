@@ -18,7 +18,7 @@ const Coupon = sequelize.define("coupon", {
     allowNull: false,
   },
   description: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     allowNull: false,
   },
   isActive: {
