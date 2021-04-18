@@ -18,17 +18,17 @@ const Order = sequelize.define("order", {
       key: 'id'
     }
   },
-  subTotalAmount:{
+  subTotalAmount: {
     type: Sequelize.DOUBLE,
     allowNull: false,
     defaultValue: 0.0
   },
-  discount:{
+  coupon: {
     type: Sequelize.DOUBLE,
     allowNull: false,
     defaultValue: 0.0
   },
-  tax:{
+  tax: {
     type: Sequelize.DOUBLE,
     allowNull: false,
     defaultValue: 0.0
@@ -38,29 +38,29 @@ const Order = sequelize.define("order", {
     allowNull: false,
     defaultValue: 0.0
   },
-  isShipped:{
+  isShipped: {
     type: Sequelize.BOOLEAN,
     allowNull: false,
     defaultValue: false
   },
-  isDelivered:{
+  isDelivered: {
     type: Sequelize.BOOLEAN,
     allowNull: false,
     defaultValue: false
   },
-  deliveryAddress:{
+  deliveryAddress: {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  deliveryCity:{
+  deliveryCity: {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  deliveryPinCode:{
+  deliveryPinCode: {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  deliveryCountry:{
+  deliveryCountry: {
     type: Sequelize.STRING,
     allowNull: false,
   },

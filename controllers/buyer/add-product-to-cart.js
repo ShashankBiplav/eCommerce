@@ -1,6 +1,5 @@
 //DB operator
 import pkg from "sequelize";
-
 const {Op} = pkg;
 
 //models
