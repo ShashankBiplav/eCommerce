@@ -6,11 +6,15 @@ import {body} from 'express-validator';
 import {addProductToCart} from "../controllers/buyer/add-product-to-cart.js";
 import {removeProductFromCart} from "../controllers/buyer/remove-product-from-cart.js";
 import {decreaseProductQuantityFromCart} from "../controllers/buyer/decrease-product-quantity-from-cart.js";
+import {getCoupons} from "../controllers/buyer/get-coupons.js";
 
 //middleware
 import {isBuyer} from "../middleware/is-buyer.js";
 
 const router = express.Router();
+
+//GET AVAILABLE COUPONS
+router.get('/coupons', isBuyer, getCoupons);
 
 //ADD PRODUCT TO CART
 router.post('/add-product-to-cart', isBuyer, addProductToCart);
