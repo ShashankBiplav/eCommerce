@@ -5,12 +5,6 @@ import Brand from "./brand.js";
 import Product from "./product.js";
 
 const BrandProducts = sequelize.define("brand_product", {
-  id: {
-    type: Sequelize.INTEGER,
-    autoIncrement: true,
-    allowNull: false,
-    primaryKey: true
-  },
   brandId: {
     type: Sequelize.INTEGER,
     allowNull: false,

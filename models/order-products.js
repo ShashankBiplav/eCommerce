@@ -6,12 +6,6 @@ import Order from "./order.js";
 import Product from "./product.js";
 
 const OrderProducts = sequelize.define("order_product", {
-  id: {
-    type: Sequelize.INTEGER,
-    autoIncrement: true,
-    allowNull: false,
-    primaryKey: true
-  },
   orderId: {
     type: Sequelize.INTEGER,
     allowNull: false,

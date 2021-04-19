@@ -5,12 +5,6 @@ import Category from "./category.js";
 import Product from "./product.js";
 
 const CategoryProducts = sequelize.define("category_product", {
-  id: {
-    type: Sequelize.INTEGER,
-    autoIncrement: true,
-    allowNull: false,
-    primaryKey: true
-  },
   categoryId: {
     type: Sequelize.INTEGER,
     allowNull: false,

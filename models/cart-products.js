@@ -6,12 +6,6 @@ import Cart from "./cart.js";
 import Product from "./product.js";
 
 const CartProducts = sequelize.define("cart_product", {
-  id: {
-    type: Sequelize.INTEGER,
-    autoIncrement: true,
-    allowNull: false,
-    primaryKey: true
-  },
   cartId: {
     type: Sequelize.INTEGER,
     allowNull: false,
