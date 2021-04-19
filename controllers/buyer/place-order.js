@@ -13,8 +13,8 @@ import OrderProducts from "../../models/order-products.js";
 import {validationErrorHandler} from "../../helpers/validation-error-handler.js";
 
 //DB relations
-User.hasMany(Order);
-Order.hasMany(OrderProducts);
-OrderProducts.belongsTo(Order);
-Cart.hasMany(CartProducts);
-CartProducts.belongsTo(Cart);
+// User.hasMany(Order);
+// Order.hasMany(OrderProducts);
+// OrderProducts.belongsTo(Order);
+// Cart.hasMany(CartProducts);
+// CartProducts.belongsTo(Cart);

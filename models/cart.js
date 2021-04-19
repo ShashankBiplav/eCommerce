@@ -1,7 +1,10 @@
 import Sequelize from "sequelize";
 
 import sequelize from "../utilities/database.js";
+
+//models
 import User from "./user.js";
+import Coupon from "./coupon.js";
 
 const Cart = sequelize.define("cart", {
   id: {
@@ -17,6 +20,19 @@ const Cart = sequelize.define("cart", {
       model: User,
       key: 'id'
     }
+  },
+  couponId:{
+    type: Sequelize.INTEGER,
+    allowNull: true,
+    references: {
+      model: Coupon,
+      key: 'id'
+    }
+  },
+  finalAmount:{
+    type: Sequelize.DOUBLE,
+    allowNull: true,
+    defaultValue: 0.0
   },
   amount: {
     type: Sequelize.DOUBLE,

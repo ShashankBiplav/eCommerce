@@ -6,6 +6,7 @@ const {Op} = pkg;
 import Cart from "../../models/cart.js";
 import CartProducts from "../../models/cart-products.js";
 import Product from "../../models/product.js";
+import Coupon from "../../models/coupon.js";
 
 //helpers
 import {validationErrorHandler} from "../../helpers/validation-error-handler.js";
@@ -48,10 +49,13 @@ export const addProductToCart = async (req, res, next) => {
             },
             exclude: ['cartId', 'createdAt', 'updatedAt']
           },
-          
+        },
+        {
+         model: Coupon
         }
       ]
     });
+    console.log(preExistingCart);
     if (!preExistingCart) {
       const result = await Cart.create({
           userId: req.userId,

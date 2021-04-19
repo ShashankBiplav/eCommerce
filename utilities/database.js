@@ -3,7 +3,7 @@ import Sequelize from "sequelize";
 const sequelize = new Sequelize("eCommerce", "root", "root", {
   dialect: "mysql",
   host: "localhost",
-  logging: false
+  logging: true
 }, {
   pool: {
     max: 100,
