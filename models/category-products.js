@@ -27,6 +27,8 @@ const CategoryProducts = sequelize.define("category_product", {
       key: 'id'
     },
   },
+},{
+  timestamps: false
 });
 
 export default CategoryProducts;

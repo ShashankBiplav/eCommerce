@@ -6,7 +6,7 @@ import Product from "../../models/product.js";
 import {validationErrorHandler} from "../../helpers/validation-error-handler.js";
 
 //DB relations
-// Category.hasMany(Product, {foreignKey: "id", targetKey: "productId"});
+Category.belongsToMany(Product,{through:'category_products'});
 
 export const getAllCategoryProducts = async (req, res, next) => {
   validationErrorHandler(req, next);

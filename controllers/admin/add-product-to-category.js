@@ -12,8 +12,10 @@ export const addProductToCategory = async (req, res, next) => {
       where:{
         productId,
         categoryId
-      }
+      },
+      raw: true
     });
+    console.log(preExistingProduct);
     if (preExistingProduct){
       const error = new Error('Product has already been added to the category');
       error.statusCode = 403;

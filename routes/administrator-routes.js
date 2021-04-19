@@ -124,7 +124,7 @@ router.post('/create-coupon', isAdministrator, [
 //ADD A PRODUCT TO A CATEGORY
 router.post('/add-product-to-category', isAdministrator,[
   body('productId').isInt().not().isEmpty().withMessage("ProductId is required"),
-  body('categoryId').isInt().not().isEmpty().withMessage("ProductId is required"),
+  body('categoryId').isInt().not().isEmpty().withMessage("CategoryId is required"),
 ], addProductToCategory);
 
 //ADD A PRODUCT TO A BRAND

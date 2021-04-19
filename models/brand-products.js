@@ -27,6 +27,8 @@ const BrandProducts = sequelize.define("brand_product", {
       key: 'id'
     },
   },
+},{
+  timestamps: false
 });
 
 export default BrandProducts;
